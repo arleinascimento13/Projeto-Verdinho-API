@@ -8,7 +8,6 @@ public class ProjetoVerdinhoApiApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(ProjetoVerdinhoApiApplication.class, args);
-
         System.out.println("hello world");
     }
 
