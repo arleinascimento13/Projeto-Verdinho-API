@@ -2,8 +2,13 @@ package org.projetoverdinho.projetoverdinhoapi.entity;
 
 import jakarta.persistence.*;
 
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.projetoverdinho.projetoverdinhoapi.enumerator.Role;
 
+@Setter @Getter @Builder
 @Entity
 @Table(name = "tb_user")
 public class UserEntity {
