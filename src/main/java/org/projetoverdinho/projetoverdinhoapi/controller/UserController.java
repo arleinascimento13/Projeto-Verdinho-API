@@ -2,21 +2,23 @@ package org.projetoverdinho.projetoverdinhoapi.controller;
 
 import org.projetoverdinho.projetoverdinhoapi.dto.UserCreateDTO;
 import org.projetoverdinho.projetoverdinhoapi.service.UserService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/user")
 public class UserController {
 
-    private UserService controller;
+    private UserService service;
 
-    public UserController(UserService controller){
-        this.controller = controller;
+    public UserController(UserService service){
+        this.service = service;
     }
 
     @PostMapping
-    public String create(@RequestBody UserCreateDTO user){
-        return this.controller.create(user);
+    public ResponseEntity<String> create(@RequestBody UserCreateDTO user){
+        this.service.create(user);
+        return ResponseEntity.ok("User has created is sucess");
     }
 
     @GetMapping
