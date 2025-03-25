@@ -14,7 +14,7 @@ public class UserService {
         this.repository = repository;
     }
 
-    public String create(UserCreateDTO userDTO){
+    public void create(UserCreateDTO userDTO){
         //ADICIONAR VERIFICAÇÃO JWT PARA CRIA USUARIO ROLE ADMIN
         UserEntity user = UserEntity
                 .builder()
@@ -23,7 +23,8 @@ public class UserService {
                 .name(userDTO.name())
                 .phoneNumber(userDTO.phoneNumber())
                 .sector(userDTO.sector())
+                .role(userDTO.role())
                 .build();
-        return "" + repository.save(user).getId();
+        repository.save(user);
     }
 }
