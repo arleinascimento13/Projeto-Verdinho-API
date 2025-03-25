@@ -1,20 +1,22 @@
 package org.projetoverdinho.projetoverdinhoapi.controller;
 
-import org.apache.catalina.User;
-import org.springframework.stereotype.Controller;
+import org.projetoverdinho.projetoverdinhoapi.dto.UserCreateDTO;
+import org.projetoverdinho.projetoverdinhoapi.service.UserService;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/user")
 public class UserController {
 
-    private UserController controller;
+    private UserService controller;
 
-
+    public UserController(UserService controller){
+        this.controller = controller;
+    }
 
     @PostMapping
-    public String create(){
-        return null;
+    public String create(@RequestBody UserCreateDTO user){
+        return this.controller.create(user);
     }
 
     @GetMapping
