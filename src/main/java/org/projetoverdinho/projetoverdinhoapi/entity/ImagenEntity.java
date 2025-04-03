@@ -23,7 +23,6 @@ public class ImagenEntity {
     @Column(name = "caminho")
     private String caminho;
 
-s
     @Basic(optional = false)
     @Column(name = "extensao")
     private String extensao;
