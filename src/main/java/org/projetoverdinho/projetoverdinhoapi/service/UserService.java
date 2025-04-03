@@ -1,12 +1,12 @@
 package org.projetoverdinho.projetoverdinhoapi.service;
 
-import org.projetoverdinho.projetoverdinhoapi.dto.UserCreateDTO;
+import org.projetoverdinho.projetoverdinhoapi.dto.UserDTO;
 import org.projetoverdinho.projetoverdinhoapi.entity.UserEntity;
 import org.projetoverdinho.projetoverdinhoapi.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserService {
+public class UserService{
 
     private UserRepository repository;
 
@@ -14,7 +14,7 @@ public class UserService {
         this.repository = repository;
     }
 
-    public void create(UserCreateDTO userDTO){
+    public UserRepository create(UserDTO userDTO){
         //ADICIONAR VERIFICAÇÃO JWT PARA CRIA USUARIO ROLE ADMIN
         var user = UserEntity
                 .builder()
@@ -25,6 +25,23 @@ public class UserService {
                 .sector(userDTO.sector())
                 .role(userDTO.role())
                 .build();
-        repository.save(user);
+         repository.save(user);
+         return repository;
     }
+
+    public String login(UserDTO dto){
+
+        return null;
+    }
+
+    public UserRepository remove(UserDTO dto){
+
+        return null;
+    }
+
+    public UserRepository[] getaAll(UserDTO dto){
+
+        return null;
+    }
+
 }

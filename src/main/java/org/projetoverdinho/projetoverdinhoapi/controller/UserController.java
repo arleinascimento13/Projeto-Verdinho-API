@@ -1,6 +1,6 @@
 package org.projetoverdinho.projetoverdinhoapi.controller;
 
-import org.projetoverdinho.projetoverdinhoapi.dto.UserCreateDTO;
+import org.projetoverdinho.projetoverdinhoapi.dto.UserDTO;
 import org.projetoverdinho.projetoverdinhoapi.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +16,7 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<String> create(@RequestBody UserCreateDTO user){
+    public ResponseEntity<String> create(@RequestBody UserDTO user){
         this.service.create(user);
         return ResponseEntity.ok("User has created is sucess");
     }
