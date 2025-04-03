@@ -13,19 +13,19 @@ import lombok.*;
 public class ImagenEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer id;
+    private Integer id;
 
     @Basic(optional = false)
     @Column(name = "nome")
-    String nome;
+    private String nome;
 
     @Basic(optional = false)
     @Column(name = "caminho")
-    String caminho;
+    private String caminho;
 
-
+s
     @Basic(optional = false)
     @Column(name = "extensao")
-    String extensao;
+    private String extensao;
 
 }
