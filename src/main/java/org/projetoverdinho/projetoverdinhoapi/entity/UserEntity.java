@@ -2,12 +2,13 @@ package org.projetoverdinho.projetoverdinhoapi.entity;
 
 import jakarta.persistence.*;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.projetoverdinho.projetoverdinhoapi.enumerator.Role;
-
-@Setter @Getter @Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@Builder
 @Entity
 @Table(name = "tb_user")
 public class UserEntity {
@@ -20,13 +21,16 @@ public class UserEntity {
 
     @Column(name = "phoneNumber")
     private String phoneNumber;
-
+    //A notação significa que o parametro é obrigatorio
+    @Basic(optional = false)
     @Column(name = "role")
     private Role role;
 
+    @Basic(optional = false)
     @Column(name = "password")
     private String password;
 
+    @Basic(optional = false)
     @Column(name = "username")
     private String username;
 
