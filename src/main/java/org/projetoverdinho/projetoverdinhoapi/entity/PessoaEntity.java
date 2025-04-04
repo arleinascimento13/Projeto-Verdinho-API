@@ -5,14 +5,16 @@ import jakarta.persistence.*;
 
 
 
+import jakarta.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "pessoas")
 public class PessoaEntity {
 
     @Id
-    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Integer id;
 
     @Basic(optional = false)
@@ -34,44 +36,41 @@ public class PessoaEntity {
     @Column(name = "descricao")
     private String descricao;
 
-    /*
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "pessoa_cad_cpf")
-    private List<Imagem> imagens;
-    */
+    @JoinColumn(name = "pessoa_id") //
+    private List<ImagenEntity> imagens;
 
     // Construtor padrão
     public PessoaEntity() {
     }
 
-
     // Construtor com todos os campos
-    public PessoaEntity(Integer id, String cpf, String rg, String endereco, String telefone,/* Integer imagemLimit*/ String descricao) {
+    public PessoaEntity(Integer id, String name, String cpf, String rg, String endereco, String telefone, String descricao, List<ImagenEntity> imagens) {
         this.id = id;
+        this.name = name;
         this.cpf = cpf;
         this.rg = rg;
         this.endereco = endereco;
         this.telefone = telefone;
-        //this.imagemLimit = imagemLimit;
         this.descricao = descricao;
+        this.imagens = imagens;
     }
-
 
     // Getters e Setters
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public Integer getId() {
         return id;
     }
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getCpf() {
@@ -105,15 +104,7 @@ public class PessoaEntity {
     public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
-    /*
-    public Integer getImagemLimit() {
-        return imagemLimit;
-    }
 
-    public void setImagemLimit(Integer imagemLimit) {
-        this.imagemLimit = imagemLimit;
-    }
-    */
     public String getDescricao() {
         return descricao;
     }
@@ -122,19 +113,32 @@ public class PessoaEntity {
         this.descricao = descricao;
     }
 
+    public List<ImagenEntity> getImagens() {
+        return imagens;
+    }
+
+    public void setImagens(List<ImagenEntity> imagens) {
+        this.imagens = imagens;
+    }
 
     // Builder manual
     public static class Builder {
         private Integer id;
+        private String name;
         private String cpf;
         private String rg;
         private String endereco;
         private String telefone;
-        private Integer imagemLimit;
         private String descricao;
+        private List<ImagenEntity> imagens;
 
         public Builder id(Integer id) {
             this.id = id;
+            return this;
+        }
+
+        public Builder name(String name) {
+            this.name = name;
             return this;
         }
 
@@ -158,18 +162,18 @@ public class PessoaEntity {
             return this;
         }
 
-        public Builder imagemLimit(Integer imagemLimit) {
-            this.imagemLimit = imagemLimit;
-            return this;
-        }
-
         public Builder descricao(String descricao) {
             this.descricao = descricao;
             return this;
         }
 
+        public Builder imagens(List<ImagenEntity> imagens) {
+            this.imagens = imagens;
+            return this;
+        }
+
         public PessoaEntity build() {
-            return new PessoaEntity(id, cpf, rg, endereco, telefone, /*imagemLimit*/ descricao);
+            return new PessoaEntity(id, name, cpf, rg, endereco, telefone, descricao, imagens);
         }
     }
 }
