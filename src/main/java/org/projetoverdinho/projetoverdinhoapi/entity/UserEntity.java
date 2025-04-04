@@ -2,9 +2,13 @@ package org.projetoverdinho.projetoverdinhoapi.entity;
 
 import jakarta.persistence.*;
 
-import lombok.*;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.projetoverdinho.projetoverdinhoapi.enumerator.Role;
-import jakarta.persistence.*;
+
+
+import java.time.Instant;
 
 @Entity
 @Table(name = "tb_user")
@@ -35,12 +39,18 @@ public class UserEntity {
     @Column(name = "sector")
     private String sector;
 
+    @CreationTimestamp
+    private Instant createdOn;
+
+    @UpdateTimestamp
+    private Instant lastUpdatedOn;
+
     // Construtor padrão
     public UserEntity() {
     }
 
     // Construtor com todos os campos
-    public UserEntity(Integer id, String name, String phoneNumber, Role role, String password, String username, String sector) {
+    public UserEntity(Integer id, String name, String phoneNumber, Role role, String password, String username, String sector,Instant lastUpdatedOn,Instant createdOn ) {
         this.id = id;
         this.name = name;
         this.phoneNumber = phoneNumber;
@@ -48,6 +58,8 @@ public class UserEntity {
         this.password = password;
         this.username = username;
         this.sector = sector;
+        this.createdOn = createdOn;
+        this.lastUpdatedOn = lastUpdatedOn;
     }
 
     // Getters e Setters
@@ -107,6 +119,23 @@ public class UserEntity {
         this.sector = sector;
     }
 
+    public Instant getCreatedOn() {
+        return createdOn;
+    }
+
+    public void setCreatedOn(Instant createdOn) {
+        this.createdOn = createdOn;
+    }
+
+    public Instant getLastUpdatedOn() {
+        return lastUpdatedOn;
+    }
+
+    public void setLastUpdatedOn(Instant lastUpdatedOn) {
+        this.lastUpdatedOn = lastUpdatedOn;
+    }
+
+
     // Builder manual (opcional)
     public static class Builder {
         private Integer id;
@@ -116,6 +145,8 @@ public class UserEntity {
         private String password;
         private String username;
         private String sector;
+        private Instant lastUpdatedOn;
+        private Instant createdOn;
 
         public Builder id(Integer id) {
             this.id = id;
@@ -152,8 +183,18 @@ public class UserEntity {
             return this;
         }
 
+        public Builder lastUpdateOn(Instant lastUpdatedOn){
+            this.lastUpdatedOn= lastUpdatedOn;
+            return this;
+        }
+
+        public Builder CreatedOn(Instant createdOn){
+            this.createdOn = createdOn;
+            return this;
+        }
+
         public UserEntity build() {
-            return new UserEntity(id, name, phoneNumber, role, password, username, sector);
+            return new UserEntity(id, name, phoneNumber, role, password, username, sector,createdOn,lastUpdatedOn);
         }
     }
 }
