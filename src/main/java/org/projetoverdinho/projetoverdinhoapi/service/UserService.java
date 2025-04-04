@@ -16,8 +16,8 @@ public class UserService{
 
     public UserRepository create(UserDTO userDTO){
         //ADICIONAR VERIFICAÇÃO JWT PARA CRIA USUARIO ROLE ADMIN
-        var user = UserEntity
-                .builder()
+        var user = new UserEntity
+                .Builder()
                 .password(userDTO.password())
                 .username(userDTO.username())
                 .name(userDTO.name())
