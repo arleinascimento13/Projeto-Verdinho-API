@@ -1,10 +1,15 @@
 package org.projetoverdinho.projetoverdinhoapi.entity;
 
-import jakarta.persistence.Basic;
-import jakarta.persistence.Column;
+import jakarta.persistence.*;
 import org.hibernate.annotations.ColumnDefault;
 
+@Entity
+@Table(name = "configs")
 public class ConfigEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private Integer id;
+
     @Column(name = "pessoa_image_limit")
     @ColumnDefault("3")
     private Integer PessoaImagemLimit;
