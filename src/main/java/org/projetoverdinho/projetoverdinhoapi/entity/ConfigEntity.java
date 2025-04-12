@@ -9,75 +9,73 @@ public class ConfigEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Integer id;
+    private String id;
 
-    @Column(name = "pessoa_image_limit")
-    @ColumnDefault("3")
-    private Integer pessoaImagemLimit;
+    @Column(name = "meta_tag")
+    private String meta_tag;
 
-    @Column(name = "animal_image_limit")
-    @ColumnDefault("3")
-    private Integer animalImageLimit;
+    @Column(name = "meta_value")
+    private String meta_value;
 
     // Construtor padrão
     public ConfigEntity() {
     }
 
     // Construtor com todos os campos
-    public ConfigEntity(Integer id, Integer pessoaImagemLimit, Integer animalImageLimit) {
+    public ConfigEntity(String id, String meta_tag, String meta_value) {
         this.id = id;
-        this.pessoaImagemLimit = pessoaImagemLimit;
-        this.animalImageLimit = animalImageLimit;
+        this.meta_tag = meta_tag;
+        this.meta_value = meta_value;
     }
 
     // Getters e Setters
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public Integer getPessoaImagemLimit() {
-        return pessoaImagemLimit;
+    public String getmeta_tag() {
+        return meta_tag;
     }
 
-    public void setPessoaImagemLimit(Integer pessoaImagemLimit) {
-        this.pessoaImagemLimit = pessoaImagemLimit;
+    public void setmeta_tag(String meta_tag) {
+        this.meta_tag = meta_tag;
     }
 
-    public Integer getAnimalImageLimit() {
-        return animalImageLimit;
+    public String getmeta_value() {
+        return meta_value;
     }
 
-    public void setAnimalImageLimit(Integer animalImageLimit) {
-        this.animalImageLimit = animalImageLimit;
+    public void setmeta_value(String meta_value) {
+        this.meta_value = meta_value;
     }
 
     // Builder manual
     public static class Builder {
-        private Integer id;
-        private Integer pessoaImagemLimit;
-        private Integer animalImageLimit;
+        private String id;
+        private String meta_tag;
+        private String meta_value;
 
-        public Builder id(Integer id) {
+        public Builder id(String id) {
             this.id = id;
             return this;
         }
 
-        public Builder pessoaImagemLimit(Integer pessoaImagemLimit) {
-            this.pessoaImagemLimit = pessoaImagemLimit;
+        public Builder meta_tag(String meta_tag) {
+            this.meta_tag = meta_tag;
             return this;
         }
 
-        public Builder animalImageLimit(Integer animalImageLimit) {
-            this.animalImageLimit = animalImageLimit;
+        public Builder meta_value(String meta_value) {
+            this.meta_value = meta_value;
             return this;
         }
 
         public ConfigEntity build() {
-            return new ConfigEntity(id, pessoaImagemLimit, animalImageLimit);
+            return new ConfigEntity(id, meta_tag, meta_value);
         }
     }
 }
