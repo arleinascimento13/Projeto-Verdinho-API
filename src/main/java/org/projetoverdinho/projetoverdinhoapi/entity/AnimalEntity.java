@@ -25,17 +25,21 @@ public class AnimalEntity {
     @Column(name = "descricao")
     private String descricao;
 
+    @OneToMany(mappedBy = "images", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ImagenEntity> images;
+
     // Construtor padrão
     public AnimalEntity() {
     }
 
     // Construtor com todos os campos
-    public AnimalEntity(Integer id, PessoaEntity antigoDono, PessoaEntity atualDono, String especie, String descricao) {
+    public AnimalEntity(Integer id, PessoaEntity antigoDono, PessoaEntity atualDono, String especie, String descricao, List<ImagenEntity> images) {
         this.id = id;
         this.antigoDono = antigoDono;
         this.atualDono = atualDono;
         this.especie = especie;
         this.descricao = descricao;
+        this.images = images;
     }
 
     // Getters e Setters
@@ -79,6 +83,14 @@ public class AnimalEntity {
         this.descricao = descricao;
     }
 
+    public List<ImagenEntity> getimages() {
+        return images;
+    }
+
+    public void setimages(List<ImagenEntity> images) {
+        this.images = images;
+    }
+
     // Builder manual
     public static class Builder {
         private Integer id;
@@ -86,6 +98,7 @@ public class AnimalEntity {
         private PessoaEntity atualDono;
         private String especie;
         private String descricao;
+        private List<ImagenEntity> images;
 
         public Builder id(Integer id) {
             this.id = id;
@@ -112,11 +125,13 @@ public class AnimalEntity {
             return this;
         }
 
-
+        public Builder images(List<ImagenEntity> images) {
+            this.images = images;
+            return this;
+        }
 
         public AnimalEntity build() {
-            return new AnimalEntity(id, antigoDono, atualDono, especie, descricao);
+            return new AnimalEntity(id, antigoDono, atualDono, especie, descricao, images);
         }
     }
 }
-
