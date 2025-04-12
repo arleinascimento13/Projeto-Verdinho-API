@@ -2,7 +2,6 @@ package org.projetoverdinho.projetoverdinhoapi.entity;
 
 import jakarta.persistence.*;
 
-
 @Entity
 @Table(name = "images")
 public class ImagenEntity {
@@ -23,16 +22,26 @@ public class ImagenEntity {
     @Column(name = "extensao")
     private String extensao;
 
+    @ManyToOne
+    @JoinColumn(name = "pessoa_id")
+    private PessoaEntity pessoa;
+
+    @ManyToOne
+    @JoinColumn(name = "animal_id")
+    private AnimalEntity animal;
+
     // Construtor padrão
     public ImagenEntity() {
     }
 
     // Construtor com todos os campos
-    public ImagenEntity(Integer id, String nome, String caminho, String extensao) {
+    public ImagenEntity(Integer id, String nome, String caminho, String extensao, PessoaEntity pessoa, AnimalEntity animal) {
         this.id = id;
         this.nome = nome;
         this.caminho = caminho;
         this.extensao = extensao;
+        this.pessoa = pessoa;
+        this.animal = animal;
     }
 
     // Getters e Setters
@@ -68,12 +77,30 @@ public class ImagenEntity {
         this.extensao = extensao;
     }
 
+    public PessoaEntity getPessoa() {
+        return pessoa;
+    }
+
+    public void setPessoa(PessoaEntity pessoa) {
+        this.pessoa = pessoa;
+    }
+
+    public AnimalEntity getAnimal() {
+        return animal;
+    }
+
+    public void setAnimal(AnimalEntity animal) {
+        this.animal = animal;
+    }
+
     // Builder manual
     public static class Builder {
         private Integer id;
         private String nome;
         private String caminho;
         private String extensao;
+        private PessoaEntity pessoa;
+        private AnimalEntity animal;
 
         public Builder id(Integer id) {
             this.id = id;
@@ -95,9 +122,18 @@ public class ImagenEntity {
             return this;
         }
 
+        public Builder pessoa(PessoaEntity pessoa) {
+            this.pessoa = pessoa;
+            return this;
+        }
+
+        public Builder animal(AnimalEntity animal) {
+            this.animal = animal;
+            return this;
+        }
+
         public ImagenEntity build() {
-            return new ImagenEntity(id, nome, caminho, extensao);
+            return new ImagenEntity(id, nome, caminho, extensao, pessoa, animal);
         }
     }
 }
-
