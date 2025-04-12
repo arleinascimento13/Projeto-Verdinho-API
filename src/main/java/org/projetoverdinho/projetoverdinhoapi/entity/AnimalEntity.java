@@ -25,7 +25,7 @@ public class AnimalEntity {
     @Column(name = "descricao")
     private String descricao;
 
-    @OneToMany(mappedBy = "images", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "animal", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ImagenEntity> images;
 
     // Construtor padrão

@@ -36,8 +36,7 @@ public class PessoaEntity {
     @Column(name = "descricao")
     private String descricao;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "pessoa_id") //
+    @OneToMany(mappedBy = "pessoa",cascade = CascadeType.ALL,orphanRemoval = true)
     private List<ImagenEntity> imagens;
 
     // Construtor padrão

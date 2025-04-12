@@ -50,7 +50,7 @@ public class UserEntity {
     }
 
     // Construtor com todos os campos
-    public UserEntity(Integer id, String name, String phoneNumber, Role role, String password, String username, String sector,Instant lastUpdatedOn,Instant createdOn ) {
+    public UserEntity(Integer id, String name, String phoneNumber, Role role, String password, String username, String sector,Instant createdOn, Instant lastUpdatedOn) {
         this.id = id;
         this.name = name;
         this.phoneNumber = phoneNumber;
@@ -188,7 +188,7 @@ public class UserEntity {
             return this;
         }
 
-        public Builder CreatedOn(Instant createdOn){
+        public Builder createdOn(Instant createdOn){
             this.createdOn = createdOn;
             return this;
         }
