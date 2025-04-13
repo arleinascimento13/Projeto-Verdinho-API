@@ -1,81 +1,81 @@
 package org.projetoverdinho.projetoverdinhoapi.entity;
 
+import io.swagger.models.auth.In;
 import jakarta.persistence.*;
-import org.hibernate.annotations.ColumnDefault;
 
 @Entity
 @Table(name = "configs")
 public class ConfigEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
-    @Column(name = "meta_tag")
-    private String meta_tag;
+    @Column(name = "metaTag")
+    private String metaTag;
 
-    @Column(name = "meta_value")
-    private String meta_value;
+    @Column(name = "metaValue")
+    private String metaValue;
 
     // Construtor padrão
     public ConfigEntity() {
     }
 
     // Construtor com todos os campos
-    public ConfigEntity(String id, String meta_tag, String meta_value) {
+    public ConfigEntity(Integer id, String metaTag, String metaValue) {
         this.id = id;
-        this.meta_tag = meta_tag;
-        this.meta_value = meta_value;
+        this.metaTag = metaTag;
+        this.metaValue = metaValue;
     }
 
     // Getters e Setters
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public String getmeta_tag() {
-        return meta_tag;
+    public String getmetatag() {
+        return metaTag;
     }
 
-    public void setmeta_tag(String meta_tag) {
-        this.meta_tag = meta_tag;
+    public void setmetatag(String metatag) {
+        this.metaTag = metatag;
     }
 
-    public String getmeta_value() {
-        return meta_value;
+    public String getmetavalue() {
+        return metaValue;
     }
 
-    public void setmeta_value(String meta_value) {
-        this.meta_value = meta_value;
+    public void setmetavalue(String metavalue) {
+        this.metaValue = metavalue;
     }
 
     // Builder manual
     public static class Builder {
-        private String id;
-        private String meta_tag;
-        private String meta_value;
+        private Integer id;
+        private String metaTag;
+        private String metaValue;
 
-        public Builder id(String id) {
+        public Builder id(Integer id) {
             this.id = id;
             return this;
         }
 
-        public Builder meta_tag(String meta_tag) {
-            this.meta_tag = meta_tag;
+        public Builder metatag(String metaTag) {
+            this.metaTag = metaTag;
             return this;
         }
 
-        public Builder meta_value(String meta_value) {
-            this.meta_value = meta_value;
+        public Builder metavalue(String metaValue) {
+            this.metaValue = metaValue;
             return this;
         }
 
         public ConfigEntity build() {
-            return new ConfigEntity(id, meta_tag, meta_value);
+            return new ConfigEntity(id, metaTag, metaValue);
         }
     }
 }

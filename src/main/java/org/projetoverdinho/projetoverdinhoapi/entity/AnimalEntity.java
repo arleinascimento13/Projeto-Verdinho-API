@@ -26,20 +26,24 @@ public class AnimalEntity {
     private String descricao;
 
     @OneToMany(mappedBy = "animal", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<ImagenEntity> images;
+    private List<ImageEntity> images;
+
+    @OneToOne(mappedBy = "animal", cascade = CascadeType.DETACH)
+    private OcorrenciaEntity ocorrencia;
 
     // Construtor padrão
     public AnimalEntity() {
     }
 
     // Construtor com todos os campos
-    public AnimalEntity(Integer id, PessoaEntity antigoDono, PessoaEntity atualDono, String especie, String descricao, List<ImagenEntity> images) {
+    public AnimalEntity(Integer id, PessoaEntity antigoDono, PessoaEntity atualDono, String especie, String descricao, List<ImageEntity> images, OcorrenciaEntity ocorrencia) {
         this.id = id;
         this.antigoDono = antigoDono;
         this.atualDono = atualDono;
         this.especie = especie;
         this.descricao = descricao;
         this.images = images;
+        this.ocorrencia = ocorrencia;
     }
 
     // Getters e Setters
@@ -83,12 +87,20 @@ public class AnimalEntity {
         this.descricao = descricao;
     }
 
-    public List<ImagenEntity> getimages() {
+    public List<ImageEntity> getImages() {
         return images;
     }
 
-    public void setimages(List<ImagenEntity> images) {
+    public void setImages(List<ImageEntity> images) {
         this.images = images;
+    }
+
+    public OcorrenciaEntity getOcorrencia() {
+        return ocorrencia;
+    }
+
+    public void setOcorrencia(OcorrenciaEntity ocorrencia) {
+        this.ocorrencia = ocorrencia;
     }
 
     // Builder manual
@@ -98,7 +110,8 @@ public class AnimalEntity {
         private PessoaEntity atualDono;
         private String especie;
         private String descricao;
-        private List<ImagenEntity> images;
+        private List<ImageEntity> images;
+        private OcorrenciaEntity ocorrencia;
 
         public Builder id(Integer id) {
             this.id = id;
@@ -125,13 +138,18 @@ public class AnimalEntity {
             return this;
         }
 
-        public Builder images(List<ImagenEntity> images) {
+        public Builder images(List<ImageEntity> images) {
             this.images = images;
             return this;
         }
 
+        public Builder ocorrencia(OcorrenciaEntity ocorrencia) {
+            this.ocorrencia = ocorrencia;
+            return this;
+        }
+
         public AnimalEntity build() {
-            return new AnimalEntity(id, antigoDono, atualDono, especie, descricao, images);
+            return new AnimalEntity(id, antigoDono, atualDono, especie, descricao, images, ocorrencia);
         }
     }
 }

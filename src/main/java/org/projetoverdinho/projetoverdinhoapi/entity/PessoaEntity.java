@@ -3,9 +3,6 @@ package org.projetoverdinho.projetoverdinhoapi.entity;
 
 import jakarta.persistence.*;
 
-
-
-import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
@@ -37,14 +34,18 @@ public class PessoaEntity {
     private String descricao;
 
     @OneToMany(mappedBy = "pessoa",cascade = CascadeType.ALL,orphanRemoval = true)
-    private List<ImagenEntity> imagens;
+    private List<ImageEntity> images;
+
+    @OneToOne(mappedBy = "pessoa", cascade = CascadeType.DETACH)
+    private OcorrenciaEntity ocorrencia;
 
     // Construtor padrão
     public PessoaEntity() {
     }
 
     // Construtor com todos os campos
-    public PessoaEntity(Integer id, String name, String cpf, String rg, String endereco, String telefone, String descricao, List<ImagenEntity> imagens) {
+    // Adicione o campo ao construtor
+    public PessoaEntity(Integer id, String name, String cpf, String rg, String endereco, String telefone, String descricao, List<ImageEntity> images, OcorrenciaEntity ocorrencia) {
         this.id = id;
         this.name = name;
         this.cpf = cpf;
@@ -52,8 +53,10 @@ public class PessoaEntity {
         this.endereco = endereco;
         this.telefone = telefone;
         this.descricao = descricao;
-        this.imagens = imagens;
+        this.images = images;
+        this.ocorrencia = ocorrencia;
     }
+
 
     // Getters e Setters
     public Integer getId() {
@@ -112,14 +115,21 @@ public class PessoaEntity {
         this.descricao = descricao;
     }
 
-    public List<ImagenEntity> getImagens() {
-        return imagens;
+    public List<ImageEntity> getImages() {
+        return images;
     }
 
-    public void setImagens(List<ImagenEntity> imagens) {
-        this.imagens = imagens;
+    public void setImages(List<ImageEntity> images) {
+        this.images = images;
     }
 
+    public OcorrenciaEntity getOcorrencia() {
+        return ocorrencia;
+    }
+
+    public void setOcorrencia(OcorrenciaEntity ocorrencia) {
+        this.ocorrencia = ocorrencia;
+    }
     // Builder manual
     public static class Builder {
         private Integer id;
@@ -129,7 +139,8 @@ public class PessoaEntity {
         private String endereco;
         private String telefone;
         private String descricao;
-        private List<ImagenEntity> imagens;
+        private List<ImageEntity> images;
+        private OcorrenciaEntity ocorrencia;
 
         public Builder id(Integer id) {
             this.id = id;
@@ -166,13 +177,20 @@ public class PessoaEntity {
             return this;
         }
 
-        public Builder imagens(List<ImagenEntity> imagens) {
-            this.imagens = imagens;
+        public Builder images(List<ImageEntity> images) {
+            this.images = images;
+            return this;
+        }
+
+
+
+        public Builder ocorrencia(OcorrenciaEntity ocorrencia) {
+            this.ocorrencia = ocorrencia;
             return this;
         }
 
         public PessoaEntity build() {
-            return new PessoaEntity(id, name, cpf, rg, endereco, telefone, descricao, imagens);
+            return new PessoaEntity(id, name, cpf, rg, endereco, telefone, descricao, images, ocorrencia);
         }
     }
 }

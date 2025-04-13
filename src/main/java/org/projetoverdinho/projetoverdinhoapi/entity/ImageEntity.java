@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "images")
-public class ImagenEntity {
+public class ImageEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,11 +31,11 @@ public class ImagenEntity {
     private AnimalEntity animal;
 
     // Construtor padrão
-    public ImagenEntity() {
+    public ImageEntity() {
     }
 
     // Construtor com todos os campos
-    public ImagenEntity(Integer id, String nome, String caminho, String extensao, PessoaEntity pessoa, AnimalEntity animal) {
+    public ImageEntity(Integer id, String nome, String caminho, String extensao, PessoaEntity pessoa, AnimalEntity animal) {
         this.id = id;
         this.nome = nome;
         this.caminho = caminho;
@@ -132,8 +132,8 @@ public class ImagenEntity {
             return this;
         }
 
-        public ImagenEntity build() {
-            return new ImagenEntity(id, nome, caminho, extensao, pessoa, animal);
+        public ImageEntity build() {
+            return new ImageEntity(id, nome, caminho, extensao, pessoa, animal);
         }
     }
 }

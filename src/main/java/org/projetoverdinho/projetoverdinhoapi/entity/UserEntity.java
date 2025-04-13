@@ -11,7 +11,7 @@ import org.projetoverdinho.projetoverdinhoapi.enumerator.Role;
 import java.time.Instant;
 
 @Entity
-@Table(name = "tb_user")
+@Table(name = "users")
 public class UserEntity {
 
     @Id
