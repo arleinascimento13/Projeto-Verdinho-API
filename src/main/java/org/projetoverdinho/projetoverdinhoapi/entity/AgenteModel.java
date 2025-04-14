@@ -2,19 +2,28 @@ package org.projetoverdinho.projetoverdinhoapi.entity;
 
 import jakarta.persistence.*;
 
+@Table(name = "agente")
 @Entity
-@Table(name = "usuario")
-public class UsuarioModel {
+public class AgenteModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "nome", nullable = false, length = 255)
+    @Column(name = "nome")
     private String nome;
 
-    @Column(name = "senha_hash", nullable = false, length = 255)
+    @Column(name = "senhahash")
     private String senhaHash;
+
+    @Column(name = "cpf")
+    private String cpf;
+
+    @Column(name = "telefone")
+    private String telefone;
+
+    public AgenteModel() {
+    }
 
     public Long getId() {
         return id;
@@ -34,5 +43,21 @@ public class UsuarioModel {
 
     public void setSenhaHash(String senhaHash) {
         this.senhaHash = senhaHash;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
+    public String getTelefone() {
+        return telefone;
     }
 }
