@@ -1,6 +1,7 @@
 package org.projetoverdinho.projetoverdinhoapi.entity;
 
 import jakarta.persistence.*;
+import org.projetoverdinho.projetoverdinhoapi.enumerator.Role;
 
 @Table(name = "agente")
 @Entity
@@ -8,6 +9,7 @@ public class AgenteModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
     @Column(name = "nome")
@@ -21,6 +23,9 @@ public class AgenteModel {
 
     @Column(name = "telefone")
     private String telefone;
+
+    @Column(name = "role")
+    private Role role;
 
     public AgenteModel() {
     }
@@ -59,5 +64,13 @@ public class AgenteModel {
 
     public String getTelefone() {
         return telefone;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 }

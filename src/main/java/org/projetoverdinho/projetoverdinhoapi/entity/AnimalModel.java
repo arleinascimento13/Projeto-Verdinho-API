@@ -4,40 +4,42 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import org.projetoverdinho.projetoverdinhoapi.enumerator.StatusAtivo;
 
-
 @Entity
-@Table(name = "pessoa")
-public class PessoaModel {
+@Table(name = "animais")
+public class AnimalModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "nome", nullable = false)
+    @Column(name = "nome")
     private String nome;
 
-    @Column(name = "rg", nullable = true)
-    private String rg;
+    @Column(name = "tipo")
+    private String tipo;
 
-    @Column(name = "cpf", nullable = true)
-    private String cpf;
-
-    @Column(name = "imgurl", nullable = true)
+    @Column(name = "imgurl")
     private String imgUrl;
 
-    @Column(name = "telefone", nullable = false)
-    private String telefone;
+    @Column(name = "descricao")
+    private String descricao;
+
+    @Column(name = "raca")
+    private String raca;
 
     @Schema(description = "Status: 0 - desativado, 1 - ativo")
     @Column(name = "status", nullable = false)
     private StatusAtivo status;
 
-    public StatusAtivo getStatus() {
-        return status;
+    //Getters e Setters
+
+
+    public String getRaca() {
+        return raca;
     }
 
-    public void setStatus(StatusAtivo status) {
-        this.status = status;
+    public void setRaca(String raca) {
+        this.raca = raca;
     }
 
     public Long getId() {
@@ -52,20 +54,12 @@ public class PessoaModel {
         this.nome = nome;
     }
 
-    public String getRg() {
-        return rg;
+    public String getTipo() {
+        return tipo;
     }
 
-    public void setRg(String rg) {
-        this.rg = rg;
-    }
-
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
     public String getImgUrl() {
@@ -76,11 +70,19 @@ public class PessoaModel {
         this.imgUrl = imgUrl;
     }
 
-    public String getTelefone() {
-        return telefone;
+    public String getDescricao() {
+        return descricao;
     }
 
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public StatusAtivo getStatus() {
+        return status;
+    }
+
+    public void setStatus(StatusAtivo status) {
+        this.status = status;
     }
 }

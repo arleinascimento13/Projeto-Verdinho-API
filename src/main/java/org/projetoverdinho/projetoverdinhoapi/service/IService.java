@@ -1,15 +1,16 @@
 package org.projetoverdinho.projetoverdinhoapi.service;
 
 import java.util.List;
+import java.util.Map;
 
 public interface IService<T> {
     T add(T t);
 
-    T remove(String id);
+    T remove(Long id);
 
-    T update(String id, Object param, Object newValue);
+    T update(Long id, Map<String, String> updates); // Atualização parcial
 
     List<T> listAll();
 
-    T getById(String id);
+    T getById(Long id);
 }

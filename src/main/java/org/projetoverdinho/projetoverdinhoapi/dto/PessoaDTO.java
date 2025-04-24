@@ -1,15 +1,12 @@
 package org.projetoverdinho.projetoverdinhoapi.dto;
 
-import java.util.List;
+import org.projetoverdinho.projetoverdinhoapi.entity.PessoaModel;
 
 public record PessoaDTO(
-        Integer id,
-        String name,
-        String cpf,
+        String nome,
         String rg,
-        String endereco,
+        String cpf,
         String telefone,
-        String descricao,
-        List<Integer> imagesIds
+        String imgUrl
 ) {
 }

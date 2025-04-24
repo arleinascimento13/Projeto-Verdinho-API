@@ -1,4 +1,6 @@
 package org.projetoverdinho.projetoverdinhoapi.dto.authDTO;
 
-public record RegisterDTO(String senha, String nome, String cpf, String telefone) {
+import org.projetoverdinho.projetoverdinhoapi.enumerator.Role;
+
+public record RegisterDTO(String senha, String nome, String cpf, String telefone, Role role) {
 }
