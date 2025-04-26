@@ -4,10 +4,13 @@ import org.projetoverdinho.projetoverdinhoapi.entity.AgenteModel;
 import org.projetoverdinho.projetoverdinhoapi.entity.PessoaModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface PessoaRepository extends JpaRepository<PessoaModel, Integer> {
-    Optional<PessoaModel> findByCpf(String cpf);
+    List<PessoaModel> findByNomeContainingIgnoreCaseAndCpf(String nome, String cpf);
 
-    Optional<PessoaModel> findByNome(String nome);
+    List<PessoaModel> findByNomeContainingIgnoreCase(String nome);
+
+    Optional<PessoaModel> findByCpf(String cpf);
 }

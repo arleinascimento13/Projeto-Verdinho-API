@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface PessoaAnimalRepository extends JpaRepository<PessoaAnimalModel, Long> {
     List<PessoaAnimalModel> findByAnimalId(Long animalId);
+
+    List<PessoaAnimalModel> findByPessoaId(Long pessoaId);
 }

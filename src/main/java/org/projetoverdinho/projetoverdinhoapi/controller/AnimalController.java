@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/v1/animais")
 public class AnimalController {
@@ -18,26 +20,24 @@ public class AnimalController {
     //@RequestParam("secret-key") String secretKey
     // , @RequestParam("secret-key") String secretKey
 
-    @GetMapping("/{id}")
-    public ResponseEntity<?> buscaPorId(@PathVariable Long id) {
-        AnimalModel model = service.getById(id);
-
-        return ResponseEntity.ok(model);
-    }
-
     @GetMapping
     public ResponseEntity<?> buscaTodos() {
         return ResponseEntity.ok(service.listAll());
     }
 
-    @PostMapping("/registrar/{pessoaId}")
+    @PostMapping("/registrar/{pessoaCPF}")
     public ResponseEntity<?> AdicionaAnimalPorCPFDono(@PathVariable String pessoaCPF, @RequestBody AnimalModel animal) {
         try {
             AnimalModel novoAnimal = service.adicionarAnimalComDono(pessoaCPF, animal);
-            return ResponseEntity.status(HttpStatus.CREATED).body(novoAnimal);
+            return ResponseEntity.ok(novoAnimal);
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Erro ao adicionar animal com dono.");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Erro ao adicionar animal com dono. ERRO: " + e);
         }
+    }
+
+    @GetMapping("/{pessoaCPF}")
+    public ResponseEntity<?> BuscaAnimalPorCPFDono(@PathVariable String pessoaCPF) {
+        return ResponseEntity.ok(service.buscarAnimaisPorCpfDono(pessoaCPF));
     }
 
     @GetMapping("/{id}/completo")

@@ -19,7 +19,7 @@ public class PessoaModel {
     @Column(name = "rg", nullable = true)
     private String rg;
 
-    @Column(name = "cpf", nullable = true)
+    @Column(name = "cpf", nullable = true, unique = true)
     private String cpf;
 
     @Column(name = "imgurl", nullable = true)
@@ -83,4 +83,5 @@ public class PessoaModel {
     public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
+
 }

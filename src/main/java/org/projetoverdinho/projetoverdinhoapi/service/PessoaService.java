@@ -24,7 +24,8 @@ public class PessoaService implements IService<PessoaModel> {
     @Override
     public PessoaModel remove(Long id) {
         PessoaModel model = getById(id);
-        repo.delete(model);
+        model.setStatus(StatusAtivo.DESATIVADO);
+        repo.save(model);
         return model;
     }
 
@@ -61,5 +62,13 @@ public class PessoaService implements IService<PessoaModel> {
     public PessoaModel getById(Long id) {
         Optional<PessoaModel> result = repo.findById(Math.toIntExact(id));
         return result.orElseThrow(() -> new RuntimeException("Agente não encontrado com id: " + id));
+    }
+
+    public List<PessoaModel> buscarPorNome(String nome) {
+        return repo.findByNomeContainingIgnoreCase(nome);
+    }
+
+    public PessoaModel buscarPorCpf(String cpf) {
+        return repo.findByCpf(cpf).get();
     }
 }
