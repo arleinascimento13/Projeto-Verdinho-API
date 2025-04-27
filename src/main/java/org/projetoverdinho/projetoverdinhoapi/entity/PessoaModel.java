@@ -28,9 +28,21 @@ public class PessoaModel {
     @Column(name = "telefone", nullable = false)
     private String telefone;
 
+    @Column(name = "endereco", nullable = true)
+    private String endereco;
+
     @Schema(description = "Status: 0 - desativado, 1 - ativo")
     @Column(name = "status", nullable = false)
     private StatusAtivo status;
+
+
+    public String getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
+    }
 
     public StatusAtivo getStatus() {
         return status;
