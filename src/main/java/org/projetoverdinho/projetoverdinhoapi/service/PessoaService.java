@@ -60,8 +60,7 @@ public class PessoaService implements IService<PessoaModel> {
 
     @Override
     public PessoaModel getById(Long id) {
-        Optional<PessoaModel> result = repo.findById(Math.toIntExact(id));
-        return result.orElseThrow(() -> new RuntimeException("Agente não encontrado com id: " + id));
+        return repo.findById(Math.toIntExact(id)).orElseThrow(() -> new RuntimeException("Pessoa não encontrado com id: " + id));
     }
 
     public List<PessoaModel> buscarPorNome(String nome) {
@@ -69,6 +68,6 @@ public class PessoaService implements IService<PessoaModel> {
     }
 
     public PessoaModel buscarPorCpf(String cpf) {
-        return repo.findByCpf(cpf).get();
+        return repo.findByCpf(cpf).orElseThrow(() -> new RuntimeException("Pessoa não encontrado com cpf: " + cpf));
     }
 }

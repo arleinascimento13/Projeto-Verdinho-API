@@ -18,14 +18,12 @@ public class PessoaController {
 
     @PostMapping
     public ResponseEntity<?> adiciona(@RequestBody PessoaModel i, @RequestParam("secret-key") String secretKey) {
-        PessoaModel pessoaSalva = service.add(i);
-        return ResponseEntity.ok(pessoaSalva);
+        return ResponseEntity.ok(service.add(i));
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<?> buscaPorId(@PathVariable Long id, @RequestParam("secret-key") String secretKey) {
-        PessoaModel model = service.getById(id);
-        return ResponseEntity.ok(model);
+        return ResponseEntity.ok(service.getById(id));
     }
 
     @GetMapping
@@ -39,7 +37,7 @@ public class PessoaController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity editaPorId(@PathVariable Long id, @RequestBody Map<String, String> updates, @RequestParam("secret-key") String secretKey) {
+    public ResponseEntity<?> editaPorId(@PathVariable Long id, @RequestBody Map<String, String> updates, @RequestParam("secret-key") String secretKey) {
         return ResponseEntity.ok(service.update(id, updates));
     }
 
